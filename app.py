@@ -35,7 +35,8 @@ def main():
     bmi = st.sidebar.number_input("BMI (0-50)", min_value=0.0, max_value=50.0, value=0.0, help="Body Mass Index")
     diabetespedigree = st.sidebar.number_input("Diabetes Pedigree (0-2)", min_value=0.0, max_value=2.0, value=0.0, help="Diabetes pedigree function")
     
-    age = st.sidebar.number_input("Age (1-100)", min_value=1, max_value=100, value=0, help="Age")
+    # Ensure the default value for age is within the specified range
+    age = st.sidebar.number_input("Age (1-100)", min_value=1, max_value=100, value=1, help="Age")
     skinthickness = st.sidebar.number_input("Skin Thickness (0-100)", min_value=0, max_value=100, value=0, help="Skin thickness")
 
     # Prediction button
