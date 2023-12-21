@@ -1,9 +1,8 @@
 import streamlit as st
-import pickle
-import numpy as np
+from joblib import load  # Import load from joblib instead of pickle
 
 # Load the diabetes prediction model
-diabetes_model = pickle.load(open('models/diabetes.sav', 'rb'))
+diabetes_model = load('models/diabetes.sav')
 
 # Streamlit app
 def main():
