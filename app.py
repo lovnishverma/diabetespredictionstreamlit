@@ -41,6 +41,12 @@ def main():
         age = st.sidebar.number_input("Age", value=0)
         skinthickness = st.sidebar.number_input("Skin Thickness", value=0)
 
+        # Make sure to convert input values to floats
+        pregnancies, glucose, bloodpressure, insulin, bmi, diabetespedigree, age, skinthickness = (
+            float(pregnancies), float(glucose), float(bloodpressure),
+            float(insulin), float(bmi), float(diabetespedigree), float(age), float(skinthickness)
+        )
+
         pred = predict_diabetes(pregnancies, glucose, bloodpressure, insulin, bmi, diabetespedigree, age, skinthickness)
         result_message = "POSITIVE" if pred else "NEGATIVE"
         st.success(f"Hello {name}, your Diabetes test results are ready. RESULT: {result_message}")
