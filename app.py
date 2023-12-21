@@ -19,44 +19,42 @@ def main():
     st.image("static/logo.png", use_column_width=True)  # Replace with your logo
 
     # Input form
-    st.sidebar.header("Patient Details")
+    st.sidebar.header("Paitent Details")
 
     # User details
     name = st.sidebar.text_input("Name", help="Enter your name")
-
-    # Demo data buttons
+     # Demo data buttons
     if st.sidebar.button("Load Positive Demo Data", key="positive_demo_button"):
         load_positive_demo_data()
     if st.sidebar.button("Load Negative Demo Data", key="negative_demo_button"):
         load_negative_demo_data()
 
+
+    # Clinical details
+    st.sidebar.subheader("Clinical Details")
+    pregnancies = st.sidebar.number_input("Pregnancies", value=0, help="Number of pregnancies")
+    glucose = st.sidebar.number_input("Glucose", value=0, help="Glucose level")
+    bloodpressure = st.sidebar.number_input("Blood Pressure", value=0, help="Blood pressure")
+    insulin = st.sidebar.number_input("Insulin", value=0, help="Insulin level")
+    bmi = st.sidebar.number_input("BMI", value=0.0, help="Body Mass Index")
+    diabetespedigree = st.sidebar.number_input("Diabetes Pedigree", value=0.0, help="Diabetes pedigree function")
+    age = st.sidebar.number_input("Age", value=0, help="Age")
+    skinthickness = st.sidebar.number_input("Skin Thickness", value=0, help="Skin thickness")
+
     # Prediction button
     if st.sidebar.button("Predict", key="predict_button"):
-        pregnancies = st.sidebar.number_input("Pregnancies", value=0)
-        glucose = st.sidebar.number_input("Glucose", value=0)
-        bloodpressure = st.sidebar.number_input("Blood Pressure", value=0)
-        insulin = st.sidebar.number_input("Insulin", value=0)
-        bmi = st.sidebar.number_input("BMI", value=0.0)
-        diabetespedigree = st.sidebar.number_input("Diabetes Pedigree", value=0.0)
-        age = st.sidebar.number_input("Age", value=0)
-        skinthickness = st.sidebar.number_input("Skin Thickness", value=0)
-
-        # Make sure to convert input values to floats
-        pregnancies, glucose, bloodpressure, insulin, bmi, diabetespedigree, age, skinthickness = (
-            float(pregnancies), float(glucose), float(bloodpressure),
-            float(insulin), float(bmi), float(diabetespedigree), float(age), float(skinthickness)
+        pred = predict_diabetes(
+            pregnancies, glucose, bloodpressure, skinthickness, insulin, bmi, diabetespedigree, age
         )
-
-        pred = predict_diabetes(pregnancies, glucose, bloodpressure, insulin, bmi, diabetespedigree, age, skinthickness)
         result_message = "POSITIVE" if pred else "NEGATIVE"
         st.success(f"Hello {name}, your Diabetes test results are ready. RESULT: {result_message}")
 
     # Footer
     st.sidebar.markdown("---")
-    st.sidebar.markdown("© NIELIT Ropar 2023-24 Diabetes Prediction App")
+    st.sidebar.markdown("© 2023 Diabetes Prediction App")
 
 # Function to predict diabetes
-def predict_diabetes(pregnancies, glucose, bloodpressure, insulin, bmi, diabetespedigree, age, skinthickness):
+def predict_diabetes(pregnancies, glucose, bloodpressure, skinthickness, insulin, bmi, diabetespedigree, age):
     pred = diabetes_model.predict(
         [[pregnancies, glucose, bloodpressure, skinthickness, insulin, bmi, diabetespedigree, age]]
     )
