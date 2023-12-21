@@ -16,7 +16,7 @@ def main():
 
     # Header
     st.title("Diabetes Prediction App")
-    st.image("static/logo.png", use_column_width=True)
+    st.image("path/to/your/logo.png", use_column_width=True)  # Replace with your logo
 
     # Input form
     st.sidebar.header("User Input")
@@ -39,6 +39,12 @@ def main():
     age = st.sidebar.number_input("Age", value=0, help="Age")
     skinthickness = st.sidebar.number_input("Skin Thickness", value=0, help="Skin thickness")
 
+    # Demo data buttons
+    if st.sidebar.button("Load Positive Demo Data", key="positive_demo_button"):
+        load_positive_demo_data()
+    if st.sidebar.button("Load Negative Demo Data", key="negative_demo_button"):
+        load_negative_demo_data()
+
     # Prediction button
     if st.sidebar.button("Predict", key="predict_button"):
         pred = predict_diabetes(
@@ -57,6 +63,40 @@ def predict_diabetes(pregnancies, glucose, bloodpressure, skinthickness, insulin
         [[pregnancies, glucose, bloodpressure, skinthickness, insulin, bmi, diabetespedigree, age]]
     )
     return bool(pred[0])
+
+# Function to load positive demo data
+def load_positive_demo_data():
+    st.sidebar.text_input("First Name", "John")
+    st.sidebar.text_input("Last Name", "Doe")
+    st.sidebar.text_input("Email", "john.doe@example.com")
+    st.sidebar.text_input("Phone", "+1234567890")
+    st.sidebar.selectbox("Gender", ["Male", "Female"])
+
+    st.sidebar.number_input("Pregnancies", 5)
+    st.sidebar.number_input("Glucose", 150)
+    st.sidebar.number_input("Blood Pressure", 70)
+    st.sidebar.number_input("Insulin", 200)
+    st.sidebar.number_input("BMI", 29.0)
+    st.sidebar.number_input("Diabetes Pedigree", 0.5)
+    st.sidebar.number_input("Age", 40)
+    st.sidebar.number_input("Skin Thickness", 30)
+
+# Function to load negative demo data
+def load_negative_demo_data():
+    st.sidebar.text_input("First Name", "Jane")
+    st.sidebar.text_input("Last Name", "Smith")
+    st.sidebar.text_input("Email", "jane.smith@example.com")
+    st.sidebar.text_input("Phone", "+9876543210")
+    st.sidebar.selectbox("Gender", ["Female", "Male"])
+
+    st.sidebar.number_input("Pregnancies", 1)
+    st.sidebar.number_input("Glucose", 90)
+    st.sidebar.number_input("Blood Pressure", 60)
+    st.sidebar.number_input("Insulin", 70)
+    st.sidebar.number_input("BMI", 21.0)
+    st.sidebar.number_input("Diabetes Pedigree", 0.2)
+    st.sidebar.number_input("Age", 25)
+    st.sidebar.number_input("Skin Thickness", 20)
 
 # Run the Streamlit app
 if __name__ == "__main__":
