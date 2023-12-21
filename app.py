@@ -1,5 +1,5 @@
 import streamlit as st
-from joblib import load  # Import load from joblib instead of pickle
+from joblib import load
 
 # Load the diabetes prediction model
 diabetes_model = load('models/diabetes.sav')
@@ -19,16 +19,16 @@ def main():
     st.image("static/logo.png", use_column_width=True)  # Replace with your logo
 
     # Input form
-    st.sidebar.header("Paitent Details")
+    st.sidebar.header("Patient Details")
 
     # User details
     name = st.sidebar.text_input("Name", help="Enter your name")
-     # Demo data buttons
+
+    # Demo data buttons
     if st.sidebar.button("Load Positive Demo Data", key="positive_demo_button"):
         load_positive_demo_data()
     if st.sidebar.button("Load Negative Demo Data", key="negative_demo_button"):
         load_negative_demo_data()
-
 
     # Clinical details
     st.sidebar.subheader("Clinical Details")
@@ -62,25 +62,23 @@ def predict_diabetes(pregnancies, glucose, bloodpressure, skinthickness, insulin
 
 # Function to load positive demo data
 def load_positive_demo_data():
-    st.sidebar.number_input("Pregnancies", 5, key="pregnancies")
-    st.sidebar.number_input("Glucose", 140, key="glucose")
-    st.sidebar.number_input("Blood Pressure", 80, key="bloodpressure")
-    st.sidebar.number_input("Insulin", 32, key="insulin")
-    st.sidebar.number_input("BMI", 25.0, key="bmi")
-    st.sidebar.number_input("Diabetes Pedigree", 0.3, key="diabetespedigree")
-    st.sidebar.number_input("Age", 35, key="age")
-    st.sidebar.number_input("Skin Thickness", 25, key="skinthickness")
+    st.sidebar.text_input("Name", "Sarwan")
+    st.sidebar.number_input("Age", 35)
+    st.sidebar.number_input("Glucose", 140)
+    st.sidebar.number_input("Blood Pressure", 80)
+    st.sidebar.number_input("Insulin", 32)
+    st.sidebar.number_input("BMI", 25.0)
+    st.sidebar.number_input("Diabetes Pedigree", 0.3)
 
 # Function to load negative demo data
 def load_negative_demo_data():
-    st.sidebar.number_input("Pregnancies", 2, key="pregnancies")
-    st.sidebar.number_input("Glucose", 90, key="glucose")
-    st.sidebar.number_input("Blood Pressure", 60, key="bloodpressure")
-    st.sidebar.number_input("Insulin", 15, key="insulin")
-    st.sidebar.number_input("BMI", 22.0, key="bmi")
-    st.sidebar.number_input("Diabetes Pedigree", 0.1, key="diabetespedigree")
-    st.sidebar.number_input("Age", 28, key="age")
-    st.sidebar.number_input("Skin Thickness", 18, key="skinthickness")
+    st.sidebar.text_input("Name", "Jane")
+    st.sidebar.number_input("Age", 28)
+    st.sidebar.number_input("Glucose", 90)
+    st.sidebar.number_input("Blood Pressure", 60)
+    st.sidebar.number_input("Insulin", 15)
+    st.sidebar.number_input("BMI", 22.0)
+    st.sidebar.number_input("Diabetes Pedigree", 0.1)
 
 # Run the Streamlit app
 if __name__ == "__main__":
