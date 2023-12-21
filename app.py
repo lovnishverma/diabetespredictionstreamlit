@@ -16,7 +16,7 @@ def main():
 
     # Header
     st.title("Diabetes Prediction App")
-    st.image("path/to/your/logo.png", use_column_width=True)  # Replace with your logo
+    st.image("static/logo.png", use_column_width=True)
 
     # Input form
     st.sidebar.header("User Input")
