@@ -26,14 +26,17 @@ def main():
 
     # Clinical details
     st.sidebar.subheader("Clinical Details")
-    pregnancies = st.sidebar.number_input("Pregnancies", value=0, help="Number of pregnancies")
-    glucose = st.sidebar.number_input("Glucose", value=0, help="Glucose level")
-    bloodpressure = st.sidebar.number_input("Blood Pressure", value=0, help="Blood pressure")
-    insulin = st.sidebar.number_input("Insulin", value=0, help="Insulin level")
-    bmi = st.sidebar.number_input("BMI", value=0.0, help="Body Mass Index")
-    diabetespedigree = st.sidebar.number_input("Diabetes Pedigree", value=0.0, help="Diabetes pedigree function")
-    age = st.sidebar.number_input("Age", value=0, help="Age")
-    skinthickness = st.sidebar.number_input("Skin Thickness", value=0, help="Skin thickness")
+    
+    # Specify the range for numerical input fields
+    pregnancies = st.sidebar.number_input("Pregnancies (0-20)", min_value=0, max_value=20, value=0, help="Number of pregnancies")
+    glucose = st.sidebar.number_input("Glucose (0-300)", min_value=0, max_value=300, value=0, help="Glucose level")
+    bloodpressure = st.sidebar.number_input("Blood Pressure (0-200)", min_value=0, max_value=200, value=0, help="Blood pressure")
+    insulin = st.sidebar.number_input("Insulin (0-500)", min_value=0, max_value=500, value=0, help="Insulin level")
+    bmi = st.sidebar.number_input("BMI (0-50)", min_value=0.0, max_value=50.0, value=0.0, help="Body Mass Index")
+    diabetespedigree = st.sidebar.number_input("Diabetes Pedigree (0-2)", min_value=0.0, max_value=2.0, value=0.0, help="Diabetes pedigree function")
+    
+    age = st.sidebar.number_input("Age (1-100)", min_value=1, max_value=100, value=0, help="Age")
+    skinthickness = st.sidebar.number_input("Skin Thickness (0-100)", min_value=0, max_value=100, value=0, help="Skin thickness")
 
     # Prediction button
     if st.sidebar.button("Predict", key="predict_button"):
