@@ -27,6 +27,7 @@ def main():
     # Demo data buttons
     if st.sidebar.button("Load Positive Demo Data", key="positive_demo_button"):
         load_positive_demo_data()
+
     if st.sidebar.button("Load Negative Demo Data", key="negative_demo_button"):
         load_negative_demo_data()
 
@@ -62,23 +63,32 @@ def predict_diabetes(pregnancies, glucose, bloodpressure, skinthickness, insulin
 
 # Function to load positive demo data
 def load_positive_demo_data():
-    st.sidebar.text_input("Name", "Sarwan")
-    st.sidebar.number_input("Age", 35)
-    st.sidebar.number_input("Glucose", 140)
-    st.sidebar.number_input("Blood Pressure", 80)
-    st.sidebar.number_input("Insulin", 32)
-    st.sidebar.number_input("BMI", 25.0)
-    st.sidebar.number_input("Diabetes Pedigree", 0.3)
+    st.session_state.demo_name = "Sarwan"
+    st.session_state.demo_age = 35
+    st.session_state.demo_glucose = 140
+    st.session_state.demo_blood_pressure = 80
+    st.session_state.demo_insulin = 32
+    st.session_state.demo_bmi = 25.0
+    st.session_state.demo_diabetes_pedigree = 0.3
 
 # Function to load negative demo data
 def load_negative_demo_data():
-    st.sidebar.text_input("Name", "Jane")
-    st.sidebar.number_input("Age", 28)
-    st.sidebar.number_input("Glucose", 90)
-    st.sidebar.number_input("Blood Pressure", 60)
-    st.sidebar.number_input("Insulin", 15)
-    st.sidebar.number_input("BMI", 22.0)
-    st.sidebar.number_input("Diabetes Pedigree", 0.1)
+    st.session_state.demo_name = "Jane"
+    st.session_state.demo_age = 28
+    st.session_state.demo_glucose = 90
+    st.session_state.demo_blood_pressure = 60
+    st.session_state.demo_insulin = 15
+    st.session_state.demo_bmi = 22.0
+    st.session_state.demo_diabetes_pedigree = 0.1
+
+    # Update main input fields with demo data
+    st.sidebar.text_input("Name", st.session_state.demo_name)
+    st.sidebar.number_input("Age", st.session_state.demo_age)
+    st.sidebar.number_input("Glucose", st.session_state.demo_glucose)
+    st.sidebar.number_input("Blood Pressure", st.session_state.demo_blood_pressure)
+    st.sidebar.number_input("Insulin", st.session_state.demo_insulin)
+    st.sidebar.number_input("BMI", st.session_state.demo_bmi)
+    st.sidebar.number_input("Diabetes Pedigree", st.session_state.demo_diabetes_pedigree)
 
 # Run the Streamlit app
 if __name__ == "__main__":
